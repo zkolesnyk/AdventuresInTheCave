@@ -2,18 +2,18 @@ import java.util.Scanner;
 
 public class Main {
     // информация об игроке
-    private String name = "";
+    static String name = "";
     // информация о противнике
-    String enemyName = "";
+    static String enemyName = "";
     // информация о сокровище
-    String treasureName = "";
-    Scanner in = new Scanner(System.in);
+    static String treasureName = "";
+    static Scanner in = new Scanner(System.in);
 
-    final String room1 = "Ты проник через вход в пещеры.";
-    final String room2 = "Ты продвигаешься дальше, вглубь пещеры.";
-    final String room3 = "Ты досaaaaaaaaaaaaaaaaaaaaaaaaaaaaтиг предельных глубин пещеры.";
+    static String room1 = "Ты проник через вход в пещеры.";
+    static String room2 = "Ты продвигаешься дальше, вглубь пещеры.";
+    static String room3 = "Ты доcтиг предельных глубин пещеры.";
 
-    public void main(String[] args) {
+    public static void main(String[] args) {
         treasureName = "Золотой меч";
         enemyName = "гоблина";
         room(true, true, room1);
@@ -34,7 +34,7 @@ public class Main {
     }
 
     // отображает описание комнаты и варианты действий
-    private void room(boolean enemy, boolean treasure, String description) {
+    private static void room(boolean enemy, boolean treasure, String description) {
         while (true) {
             System.out.println(description);
             int response = 0;
@@ -43,10 +43,10 @@ public class Main {
                 if (enemy) {
                     System.out.printf("1) Напасть на подлого %s%n", enemyName);
                 } else if (!enemy) {
-                    System.out.println("Перейти в следующую комнату.");
+                    System.out.println("1) Перейти в следующую комнату.");
                 }
                 if (treasure) {
-                    System.out.printf("Взять %s.%n", treasureName);
+                    System.out.printf("2) Взять %s.%n", treasureName);
                 }
                 response = in.nextInt();
             } while (response < 1 || response > 2);
