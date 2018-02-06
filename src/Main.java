@@ -1,33 +1,26 @@
 import java.util.Scanner;
 
 public class Main {
-    // информация об игроке
-    private static String name = "";
-    // информация о противнике
-    private static String enemyName = "";
     // информация о сокровище
     private static String treasureName = "";
     private static Scanner in = new Scanner(System.in);
 
-    private static String room1 = "Ты проник через вход в пещеры.";
-    private static String room2 = "Ты продвигаешься дальше, вглубь пещеры.";
-    private static String room3 = "Ты доcтиг предельных глубин пещеры.";
-
     public static void main(String[] args) {
         if (intro()) System.exit(0);
         treasureName = "Золотой меч";
-        enemyName = "гоблина";
-        room(true, true, room1);
-        enemyName = "вомбата";
-        room(true, true, room2);
-        enemyName = "лорда хобгоблинов";
+        String room1 = "Ты проник через вход в пещеры.";
+        room(true, "гоблина", true, room1);
+        String room2 = "Ты продвигаешься дальше, вглубь пещеры.";
+        room(true, "вомбата", false, room2);
         treasureName = "груду драгоценностей.";
-        room(true, true, room3);
+        String room3 = "Ты доcтиг предельных глубин пещеры.";
+        room(true,"лорда хобгоблинов", true, room3);
+
     }
 
     private static boolean intro() {
         System.out.println("О, храбрый рыцарь! Как твоё имя?");
-        name = in.next();
+        String name = in.next();
         System.out.printf("Нам нужна твоя помощь, %s, нашу деревню захватили гоблины из северных пещер.%n", name);
         System.out.println("Примешь ли ты вызов? \n1) да\n2) нет");
         int response = in.nextInt();
@@ -35,7 +28,7 @@ public class Main {
     }
 
     // отображает описание комнаты и варианты действий
-    private static void room(boolean enemy, boolean treasure, String description) {
+    private static void room(boolean enemy, String enemyName, boolean treasure, String description) {
         while (true) {
             System.out.println(description);
             int response = 0;
@@ -51,6 +44,7 @@ public class Main {
                 }
                 response = in.nextInt();
             } while (response < 1 || response > 2);
+
             switch (response) {
                 case 1:
                     if (enemy) {
